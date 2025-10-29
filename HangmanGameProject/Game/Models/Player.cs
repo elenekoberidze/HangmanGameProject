@@ -8,7 +8,7 @@ namespace HangmanGameProject.Game.Models
 {
     public class Player : BaseEntity
     {
-        public string Name { get;  set; }
+        public string? Name { get;  set; }
         public int Score { get; set; }
         public Player(string name)
         {

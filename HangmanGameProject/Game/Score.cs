@@ -16,11 +16,9 @@ namespace HangmanGameProject.Game
         {
             try
             {
-                using (var fs = new FileStream(_scoreFile, FileMode.Append, FileAccess.Write, FileShare.None))
-                using (var sw = new StreamWriter(fs, Encoding.UTF8))
-                {
-                    sw.WriteLine($"{result.PlayedAt:o}|{result.PlayerName}|{result.Word}|{result.Won}|{result.AttemptsLeft}");
-                }
+                using var fs = new FileStream(_scoreFile, FileMode.Append, FileAccess.Write, FileShare.None);
+                using var sw = new StreamWriter(fs, Encoding.UTF8);
+                sw.WriteLine($"{result.PlayedAt:o}|{result.PlayerName}|{result.Word}|{result.Won}|{result.AttemptsLeft}");
             }
             catch (Exception ex)
             {
@@ -36,50 +34,48 @@ namespace HangmanGameProject.Game
                 if (!File.Exists(_scoreFile))
                     return list;
 
-                using (var fs = new FileStream(_scoreFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (var sr = new StreamReader(fs, Encoding.UTF8))
+                using var fs = new FileStream(_scoreFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using var sr = new StreamReader(fs, Encoding.UTF8);
+                string? line;
+                while ((line = sr.ReadLine()) != null)
                 {
-                    string? line;
-                    while ((line = sr.ReadLine()) != null)
+
+                    var parts = line.Split('|');
+
+                    if (parts.Length < 5)
+                        continue;
+
+
+                    if (!DateTime.TryParse(parts[0], out DateTime playedAt))
+                        continue;
+
+                    var playerName = parts[1];
+                    var word = parts[2];
+
+
+                    bool won = false;
+                    if (!bool.TryParse(parts[3], out won))
                     {
-                       
-                        var parts = line.Split('|');
 
-                        if (parts.Length < 5)
-                            continue; 
-
-                        
-                        if (!DateTime.TryParse(parts[0], out DateTime playedAt))
-                            continue; 
-
-                        var playerName = parts[1];
-                        var word = parts[2];
-
-                        
-                        bool won = false;
-                        if (!bool.TryParse(parts[3], out won))
-                        {
-                            
-                            won = false;
-                        }
-
-                        int attemptsLeft = 0;
-                        if (!int.TryParse(parts[4], out attemptsLeft))
-                        {
-                           
-                            attemptsLeft = 0;
-                        }
-
-                        
-                        list.Add(new Result
-                        {
-                            PlayedAt = playedAt,
-                            PlayerName = playerName,
-                            Word = word,
-                            Won = won,
-                            AttemptsLeft = attemptsLeft
-                        });
+                        won = false;
                     }
+
+                    int attemptsLeft = 0;
+                    if (!int.TryParse(parts[4], out attemptsLeft))
+                    {
+
+                        attemptsLeft = 0;
+                    }
+
+
+                    list.Add(new Result
+                    {
+                        PlayedAt = playedAt,
+                        PlayerName = playerName,
+                        Word = word,
+                        Won = won,
+                        AttemptsLeft = attemptsLeft
+                    });
                 }
             }
             catch (Exception ex)
