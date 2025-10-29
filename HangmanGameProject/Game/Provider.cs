@@ -7,15 +7,10 @@ using System.Threading.Tasks;
 
 namespace HangmanGameProject.Game
 {
-    public class Provider
+    public class Provider(string filePath = "Data/words.txt")
     {
-        private readonly string _filePath;
-        private static readonly Random rnd = new Random();
-
-        public Provider(string filePath = "Data/words.txt")
-        {
-            _filePath = filePath;
-        }
+        private readonly string _filePath = filePath;
+        private static readonly Random rnd = new();
 
         public string[] GetAllWords()
         {
@@ -41,7 +36,7 @@ namespace HangmanGameProject.Game
                 Console.WriteLine("[Provider] Warning: could not read words file: " + ex.Message);
             }
 
-            return new string[] { "elene", "pear", "apple", "banana" };
+            return ["elene", "pear", "apple", "banana"];
         }
 
         public string GetRandomWord()

@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace HangmanGameProject.Game
 {
-    public class Easy : HangmanGame
+    public class Easy(Player player) : HangmanGame(player)
     {
-        public Easy(Player player) : base(player) { }
-        protected override void initializeAttempts()
+        protected override void InitializeAttempts()
         {
             AttemptsLeft = SecretWord.Length + 5;
         }

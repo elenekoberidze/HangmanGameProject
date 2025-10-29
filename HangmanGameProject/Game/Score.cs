@@ -7,15 +7,11 @@ using System.Threading.Tasks;
 
 namespace HangmanGameProject.Game
 {
-    public class Score
+    public class Score(string scoreFile = "scores.txt")
     {
-        private readonly string _scoreFile;
-        private string? line;
+        private readonly string _scoreFile = scoreFile;
+        private readonly string? line;
 
-        public Score(string scoreFile = "scores.txt")
-        {
-            this._scoreFile = scoreFile;
-        }
         public void SaveResult(Result result)
         {
             try

@@ -10,7 +10,7 @@ namespace HangmanGameProject.Game
     public class Hard : HangmanGame
     {
         public Hard(Player player): base(player) { }
-        protected override void initializeAttempts()
+        protected override void InitializeAttempts()
         {
             AttemptsLeft = Math.Max(3, SecretWord.Length + 2);
         }

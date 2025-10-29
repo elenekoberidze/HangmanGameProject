@@ -11,9 +11,9 @@ namespace HangmanGameProject.Game
 {
     public class GameManager
     {
-        private readonly Provider wordProvider = new Provider();
-        private readonly Score scoreManager = new Score();
-        private readonly Player player = new Player();
+        private readonly Provider wordProvider = new();
+        private readonly Score scoreManager = new();
+        private readonly Player player = new();
 
         public void Run()
         {
@@ -66,7 +66,7 @@ namespace HangmanGameProject.Game
 
             
             var allResults = scoreManager.LoadAllResults();
-            if (allResults.Any())
+            if (allResults.Count != 0)
             {
                 Console.WriteLine("\n--- Score Summary ---");
 

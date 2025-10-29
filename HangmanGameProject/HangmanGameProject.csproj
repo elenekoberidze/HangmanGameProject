@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Content Include="Data\words.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

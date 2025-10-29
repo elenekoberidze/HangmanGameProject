@@ -18,11 +18,11 @@ namespace HangmanGameProject.Game
         public event GameEndHandler? OnGameEnd;
 
         protected string SecretWord { get; set; } = string.Empty;
-        protected HashSet<char> GuessedLetters { get; set; } = new HashSet<char>();
+        protected HashSet<char> GuessedLetters { get; set; } = [];
         protected int AttemptsLeft { get; set; }
         protected Player Player { get; set; } = player ?? throw new ArgumentNullException(nameof(player));
 
-        protected ArrayList GuessHistory = new ArrayList();
+        protected ArrayList GuessHistory = [];
 
         public void Start(string SecretWord)
         {
@@ -30,11 +30,11 @@ namespace HangmanGameProject.Game
             GuessedLetters.Clear();
             GuessHistory.Clear();
 
-            initializeAttempts();
+            InitializeAttempts();
             OnGameUpdate?.Invoke($"Game started for {Player.Name}. Word length: {SecretWord.Length}.");
             RunMainLoop();
         }
-        protected abstract void initializeAttempts();
+        protected abstract void InitializeAttempts();
         protected virtual void RunMainLoop()
         {
             while (AttemptsLeft > 0 && !IsWordGuessed())
