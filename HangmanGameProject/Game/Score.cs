@@ -18,7 +18,7 @@ namespace HangmanGameProject.Game
             {
                 using var fs = new FileStream(_scoreFile, FileMode.Append, FileAccess.Write, FileShare.None);
                 using var sw = new StreamWriter(fs, Encoding.UTF8);
-                sw.WriteLine($"{result.PlayedAt:o}|{result.PlayerName}|{result.Word}|{result.Won}|{result.AttemptsLeft}");
+                sw.WriteLine($"{result.PlayerName}|{result.Word}|{result.Won}|{result.AttemptsLeft}");
             }
             catch (Exception ex)
             {
@@ -70,7 +70,6 @@ namespace HangmanGameProject.Game
 
                     list.Add(new Result
                     {
-                        PlayedAt = playedAt,
                         PlayerName = playerName,
                         Word = word,
                         Won = won,

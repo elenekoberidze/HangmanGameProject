@@ -12,7 +12,5 @@ namespace HangmanGameProject.Game.Models
         public string? Word { get; set; }
         public bool Won { get; set; }
         public int AttemptsLeft { get; set; }
-        public DateTime PlayedAt { get; set; }
-        public DateTime PlayerAt { get; internal set; }
     }
 }

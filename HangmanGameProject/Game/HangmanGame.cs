@@ -110,7 +110,6 @@ namespace HangmanGameProject.Game
                 Word = SecretWord,
                 Won = IsWordGuessed(),
                 AttemptsLeft = AttemptsLeft,
-                PlayerAt = DateTime.UtcNow
             };
             OnGameEnd?.Invoke(result);
 
