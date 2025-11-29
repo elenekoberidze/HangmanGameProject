@@ -42,26 +42,21 @@ namespace HangmanGameProject.Game
 
                     var parts = line.Split('|');
 
-                    if (parts.Length < 5)
+                    if (parts.Length < 4)
                         continue;
 
-
-                    if (!DateTime.TryParse(parts[0], out DateTime playedAt))
-                        continue;
-
-                    var playerName = parts[1];
-                    var word = parts[2];
-
+                    var playerName = parts[0];
+                    var word = parts[1];
 
                     bool won = false;
-                    if (!bool.TryParse(parts[3], out won))
+                    if (!bool.TryParse(parts[2], out won))
                     {
 
                         won = false;
                     }
 
                     int attemptsLeft = 0;
-                    if (!int.TryParse(parts[4], out attemptsLeft))
+                    if (!int.TryParse(parts[3], out attemptsLeft))
                     {
 
                         attemptsLeft = 0;
