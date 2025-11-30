@@ -23,8 +23,6 @@ namespace HangmanGameProject.Game.Models
 
         public Player() { }
         
-
-        public override string ToString() => $"{Name}  {Score}";
         
     }
 }
