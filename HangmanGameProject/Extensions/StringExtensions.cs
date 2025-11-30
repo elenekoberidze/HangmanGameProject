@@ -23,9 +23,6 @@ namespace HangmanGameProject.Extensions
         {
             return char.IsLetter(c);
         }
-        public static int DistinctCount<T>(this IEnumerable<T> items)
-        {
-            return items.Distinct().Count();
-        }
+       
     }
 }
