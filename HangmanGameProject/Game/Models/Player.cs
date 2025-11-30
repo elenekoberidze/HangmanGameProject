@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HangmanGameProject.Game.Models
 {
-    public class Player : BaseEntity
+    public class Player 
     {
-        private static int nextId = 1;
         public string? Name { get;  set; }
         public int Score { get; set; }
         public Player(string name)
@@ -17,7 +16,7 @@ namespace HangmanGameProject.Game.Models
             {
                 throw new ArgumentNullException("Player name cannot be empty!");
             }
-            this.Id = nextId++;
+           
             this.Name = name.Trim();
             this.Score = 0;
         }
@@ -25,7 +24,7 @@ namespace HangmanGameProject.Game.Models
         public Player() { }
         
 
-        public override string ToString() => $"Id: {Id}, {Name} Score: {Score}";
+        public override string ToString() => $"{Name}  {Score}";
         
     }
 }

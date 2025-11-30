@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HangmanGameProject.Game.Models
 {
-    public class Result
+    public class Result 
     {
         public string? PlayerName { get; set; }
         public string? Word { get; set; }
