@@ -8,6 +8,7 @@ namespace HangmanGameProject.Game.Models
 {
     public class Result 
     {
+        public int PlayerId { get; set; }
         public string? PlayerName { get; set; }
         public string? Word { get; set; }
         public bool Won { get; set; }

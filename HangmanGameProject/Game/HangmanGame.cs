@@ -106,6 +106,7 @@ namespace HangmanGameProject.Game
             }
             var result = new Result
             {
+                PlayerId = Player.Id,
                 PlayerName = Player.Name,
                 Word = SecretWord,
                 Won = IsWordGuessed(),

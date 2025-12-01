@@ -21,7 +21,8 @@ namespace HangmanGameProject.Game
             Console.WriteLine("Enter your name:");
             player.Name = Console.ReadLine() ?? "Unknown";
 
-            
+            Console.WriteLine($"\nWelcome, {player.Name}! Your unique ID is: {player.Id}");
+
             Console.WriteLine("Choose difficulty: 1) Easy 2) Hard");
             var key = Console.ReadKey(intercept: true);
             Console.WriteLine();
@@ -33,6 +34,7 @@ namespace HangmanGameProject.Game
             game.OnGameEnd += result =>
             {
                 Console.WriteLine("--- Game Over ---");
+                Console.WriteLine($"Player ID: {result.PlayerId}");
                 Console.WriteLine($"Player: {result.PlayerName}");
                 Console.WriteLine($"Word: {result.Word}");
                 Console.WriteLine($"Won: {result.Won}");
