@@ -15,9 +15,11 @@ namespace HangmanGameProject.Game
         private readonly string _scoreFile;
         public Score(string scoreFile = "scores.txt")
         {
-            
+
             if (!Directory.Exists(folder))
+            {
                 Directory.CreateDirectory(folder);
+            }
 
             
             _scoreFile = Path.Combine(folder, scoreFile);
@@ -52,11 +54,13 @@ namespace HangmanGameProject.Game
 
                     var parts = line.Split('|');
 
-                    if (parts.Length < 6)
-                        continue;
+                    if (parts.Length < 6) {  continue; }
+                       
 
                     if (!int.TryParse(parts[0], out int playerId))
+                    {
                         playerId = 0;
+                    }
 
                     var playerName = parts[1];
                     var word = parts[2];
@@ -101,7 +105,9 @@ namespace HangmanGameProject.Game
             try
             {
                 if (File.Exists(_scoreFile))
+                {
                     File.Delete(_scoreFile);
+                }
             }
             catch (Exception ex)
             {

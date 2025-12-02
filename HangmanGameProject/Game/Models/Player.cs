@@ -41,8 +41,8 @@ namespace HangmanGameProject.Game.Models
         static Player()
         {
 
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
+            if (!Directory.Exists(folder)) {  Directory.CreateDirectory(folder); }
+               
 
 
             if (File.Exists(idFile))
@@ -57,8 +57,8 @@ namespace HangmanGameProject.Game.Models
         }
         private static void SaveNextId()
         {
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
+            if (!Directory.Exists(folder)) { Directory.CreateDirectory(folder); }
+                
 
             File.WriteAllText(idFile, nextId.ToString());
         }

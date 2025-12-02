@@ -24,7 +24,9 @@ namespace HangmanGameProject.Game
                         .ToArray();
 
                     if (lines.Length > 0)
+                    {
                         return lines;
+                    }
                 }
                 else
                 {

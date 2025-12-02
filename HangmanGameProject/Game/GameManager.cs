@@ -98,7 +98,9 @@ namespace HangmanGameProject.Game
                 {
                     var candidates = wordProvider.GetAllWords().Where(w => w.Length >= 3).ToArray();
                     if (candidates.Length > 0)
+                    {
                         secret = candidates[new Random().Next(candidates.Length)];
+                    }
                 }
 
                 game.Start(secret);
@@ -122,7 +124,9 @@ namespace HangmanGameProject.Game
                     .Take(3);
 
                 foreach (var t in top)
+                {
                     Console.WriteLine($"{t.Player}: Wins={t.Wins}, Games={t.Games}");
+                }
             }
 
             Console.WriteLine("Thanks for playing! Goodbye.");
