@@ -1,0 +1,2 @@
+﻿1|luka|programming|True|11
+2|elene|interface|False|0

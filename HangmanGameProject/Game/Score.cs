@@ -7,11 +7,21 @@ using System.Threading.Tasks;
 
 namespace HangmanGameProject.Game
 {
-    public class Score(string scoreFile = "scores.txt")
+    public class Score
     {
-        private readonly string _scoreFile = scoreFile;
-        private readonly string? line;
+        private static readonly string folder = Path.GetFullPath(
+        Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Data"));
 
+        private readonly string _scoreFile;
+        public Score(string scoreFile = "scores.txt")
+        {
+            
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            
+            _scoreFile = Path.Combine(folder, scoreFile);
+        }
         public void SaveResult(Result result)
         {
             try

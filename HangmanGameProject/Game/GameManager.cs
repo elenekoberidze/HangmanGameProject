@@ -13,13 +13,15 @@ namespace HangmanGameProject.Game
     {
         private readonly Provider wordProvider = new();
         private readonly Score scoreManager = new();
-        private readonly Player player = new();
+        private Player player;
 
         public void Run()
         {
             
             Console.WriteLine("Enter your name:");
-            player.Name = Console.ReadLine() ?? "Unknown";
+            string name = Console.ReadLine() ?? "Unknown";
+
+            player = new Player(name);
 
             Console.WriteLine($"\nWelcome, {player.Name}! Your unique ID is: {player.Id}");
 
