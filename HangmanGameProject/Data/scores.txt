@@ -1,2 +1,6 @@
 ﻿1|luka|programming|True|11
 2|elene|interface|False|0
+3|elene|polymorphism|True|16
+4|ragac|variable|True|9|19
+6|elene|object|False|11|0
+4|ragac|method|True|10|39

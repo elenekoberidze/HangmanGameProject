@@ -23,7 +23,47 @@ namespace HangmanGameProject.Game
 
             player = new Player(name);
 
-            Console.WriteLine($"\nWelcome, {player.Name}! Your unique ID is: {player.Id}");
+            Console.WriteLine("Do you have your Player ID? (y/n)");
+            var key1 = Console.ReadKey(intercept: true);
+            Console.WriteLine();
+
+            if (key1.KeyChar == 'y' || key1.KeyChar == 'Y')
+            {
+                Console.WriteLine("Enter your Player ID:");
+                if (int.TryParse(Console.ReadLine(), out int id))
+                {
+                  
+                    var results = scoreManager.LoadAllResults();
+                    var existing = results.FirstOrDefault(r => r.PlayerId == id);
+
+                    if (existing != null)
+                    {
+                        player = new Player(existing.PlayerName, existing.PlayerId, existing.Score);
+                        Console.WriteLine($"\nWelcome back, {player.Name}! Your score: {player.Score}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("ID not found. Creating new player.");
+                        player = new Player(name);
+                        Console.WriteLine($"\nNew player created. Your ID is: {player.Id}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid ID. Creating new player.");
+                    player = new Player(name);
+                    Console.WriteLine($"\nNew player created. Your ID is: {player.Id}");
+                }
+            }
+            else
+            {
+               
+                player = Player.LoadOrCreatePlayer(name, scoreManager);
+                Console.WriteLine($"\nWelcome, {player.Name}! Your ID is: {player.Id}, Score: {player.Score}");
+            }
+
+
+            
 
             Console.WriteLine("Choose difficulty: 1) Easy 2) Hard");
             var key = Console.ReadKey(intercept: true);
@@ -43,6 +83,7 @@ namespace HangmanGameProject.Game
                 Console.WriteLine($"Attempts left: {result.AttemptsLeft}");
 
                 if (result.Won) player.Score += 10 + result.AttemptsLeft;
+                result.Score = player.Score;
 
                 scoreManager.SaveResult(result);
                 Console.WriteLine($"New player score: {player.Score}");

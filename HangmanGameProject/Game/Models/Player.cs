@@ -13,7 +13,29 @@ namespace HangmanGameProject.Game.Models
         private static int nextId = 1;
         private static readonly string folder = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Data"));
         private static readonly string idFile = Path.Combine(folder, "player_id.txt");
+        public static Player LoadOrCreatePlayer(string name,Score scoreManager)
+        {
+            var results = scoreManager.LoadAllResults();
+            var existing = results.FirstOrDefault(r => r.PlayerName == name);
+            if(existing != null)
+            {
+                return new Player(name, existing.PlayerId, existing.Score);
+            }
+            else
+            {
+                return new Player(name);
+            }
+        }
+        public Player(string name, int id, int score)
+        {
+            this.Id = id;
+            this.Name = name.Trim();
+            this.Score = score;
+            if (id >= nextId)
+                nextId = id + 1;
 
+            SaveNextId();
+        }
 
 
         static Player()

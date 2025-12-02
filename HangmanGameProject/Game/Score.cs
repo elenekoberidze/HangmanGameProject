@@ -28,7 +28,7 @@ namespace HangmanGameProject.Game
             {
                 using var fs = new FileStream(_scoreFile, FileMode.Append, FileAccess.Write, FileShare.None);
                 using var sw = new StreamWriter(fs, Encoding.UTF8);
-                sw.WriteLine($"{result.PlayerId}|{result.PlayerName}|{result.Word}|{result.Won}|{result.AttemptsLeft}");
+                sw.WriteLine($"{result.PlayerId}|{result.PlayerName}|{result.Word}|{result.Won}|{result.AttemptsLeft}|{result.Score}");
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace HangmanGameProject.Game
 
                     var parts = line.Split('|');
 
-                    if (parts.Length < 5)
+                    if (parts.Length < 6)
                         continue;
 
                     if (!int.TryParse(parts[0], out int playerId))
@@ -74,7 +74,7 @@ namespace HangmanGameProject.Game
 
                         attemptsLeft = 0;
                     }
-
+                    int score = int.TryParse(parts[5], out var s) ? s : 0;
 
                     list.Add(new Result
                     {
@@ -82,7 +82,8 @@ namespace HangmanGameProject.Game
                         PlayerName = playerName,
                         Word = word,
                         Won = won,
-                        AttemptsLeft = attemptsLeft
+                        AttemptsLeft = attemptsLeft,
+                        Score = score
                     });
                 }
             }
