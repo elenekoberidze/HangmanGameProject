@@ -16,10 +16,14 @@ namespace HangmanGameProject.Game.Models
         public static Player LoadOrCreatePlayer(string name,Score scoreManager)
         {
             var results = scoreManager.LoadAllResults();
-            var existing = results.FirstOrDefault(r => r.PlayerName == name);
-            if(existing != null)
+            var latest = results
+        .Where(r => r.PlayerName == name)
+        .OrderByDescending(r => r.Score)   
+        .FirstOrDefault();
+
+            if (latest != null)
             {
-                return new Player(name, existing.PlayerId, existing.Score);
+                return new Player(latest.PlayerName, latest.PlayerId, latest.Score);
             }
             else
             {

@@ -13,3 +13,4 @@
 10|kal|loop|False|6|0
 6|elene|abstraction|False|16|0
 11|luak|delegate|False|13|0
+4|ragac|computer|True|8|58

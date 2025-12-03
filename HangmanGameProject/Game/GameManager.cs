@@ -34,12 +34,16 @@ namespace HangmanGameProject.Game
                 {
                   
                     var results = scoreManager.LoadAllResults();
-                    var existing = results.FirstOrDefault(r => r.PlayerId == id);
+                    var latest = results
+                        .Where(r => r.PlayerId == id)
+                        .OrderByDescending(r => r.Score)
+                        .FirstOrDefault();
 
-                    if (existing != null)
+
+                    if (latest != null)
                     {
-                        player = new Player(existing.PlayerName, existing.PlayerId, existing.Score);
-                        Console.WriteLine($"\nWelcome back, {player.Name}! Your score: {player.Score}");
+                        player = new Player(latest.PlayerName, latest.PlayerId, latest.Score);
+                        Console.WriteLine($"\nWelcome back, {player.Name}! Your latest score: {player.Score}");
                     }
                     else
                     {
