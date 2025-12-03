@@ -13,7 +13,7 @@ namespace HangmanGameProject.Game
     {
         private readonly Provider wordProvider = new();
         private readonly Score scoreManager = new();
-        private Player player;
+        private  Player player;
 
         public void Run()
         {
@@ -21,7 +21,7 @@ namespace HangmanGameProject.Game
             Console.WriteLine("Enter your name:");
             string name = Console.ReadLine() ?? "Unknown";
 
-            player = new Player(name);
+            Player? player = null;
 
             Console.WriteLine("Do you have your Player ID? (y/n)");
             var key1 = Console.ReadKey(intercept: true);

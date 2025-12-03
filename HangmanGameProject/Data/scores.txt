@@ -4,3 +4,12 @@
 4|ragac|variable|True|9|19
 6|elene|object|False|11|0
 4|ragac|method|True|10|39
+4|ragac|inheritance|True|11|40
+4|ragac|hangman|False|0|40
+4|ragac|abstraction|False|16|19
+4|ragac|constructor|False|16|19
+6|elene|function|False|13|0
+6|elene|loop|False|9|0
+10|kal|loop|False|6|0
+6|elene|abstraction|False|16|0
+11|luak|delegate|False|13|0
