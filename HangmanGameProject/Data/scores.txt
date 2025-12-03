@@ -14,3 +14,4 @@
 6|elene|abstraction|False|16|0
 11|luak|delegate|False|13|0
 4|ragac|computer|True|8|58
+12|jj|method|True|9|19

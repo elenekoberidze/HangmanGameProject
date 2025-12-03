@@ -123,14 +123,21 @@ namespace HangmanGameProject.Game
 
                 var top = allResults
                     .GroupBy(r => r.PlayerName)
-                    .Select(g => new { Player = g.Key, Wins = g.Count(r => r.Won), Games = g.Count() })
-                    .OrderByDescending(x => x.Wins)
-                    .Take(3);
+                    .Select(g => new
+               {
+                  Player = g.Key,
+                  TotalScore = g.Max(r => r.Score), 
+                  Games = g.Count()
+               })
+                    .OrderByDescending(x => x.TotalScore) 
+                    .Take(3); 
 
+                
                 foreach (var t in top)
                 {
-                    Console.WriteLine($"{t.Player}: Wins={t.Wins}, Games={t.Games}");
+                    Console.WriteLine($"{t.Player}: Score={t.TotalScore}, Games={t.Games}");
                 }
+
             }
 
             Console.WriteLine("Thanks for playing! Goodbye.");
